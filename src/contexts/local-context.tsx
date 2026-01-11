@@ -26,13 +26,19 @@ export const LocalContextProvider = ({
     total: currency(0),
   });
 
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    if (checkIfSSR()) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-  }, []);
+  }, [isClient]);
 
   const updateCart = (cart: CartItems) => {
     setCart(cart);

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { findByTestId, render, screen } from "@testing-library/react";
 import Page from "./page";
 import * as cartHook from "../../hooks/useCart/useCart";
 
@@ -18,10 +18,9 @@ test("Page component renders cart items when products are present", async () => 
       ],
     },
   } as any);
-  const page = await Page();
-  render(page);
+  render(<Page />);
 
-  const cartItemCards = screen.getAllByTestId("cart-item-card");
+  const cartItemCards = await screen.findAllByTestId("cart-item-card");
   expect(cartItemCards).toHaveLength(2);
 
   const summary = screen.getByTestId("summary");
@@ -32,14 +31,13 @@ test('Page component renders "Empty cart" message when no products are present',
   jest.spyOn(cartHook, "useCart").mockReturnValue({
     getCartProducts: async () => [],
     cart: {
-      total: 10,
+      total: 0,
       items: [],
     },
   } as any);
 
-  const page = await Page();
-  render(page);
+  render(<Page />);
 
-  const emptyCartMessage = screen.getByText("Empty cart");
+  const emptyCartMessage = await screen.findByText("Empty cart");
   expect(emptyCartMessage).toBeInTheDocument();
 });
