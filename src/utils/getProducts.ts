@@ -3,7 +3,9 @@ import { FakeAPIProduct } from "core/types/product";
 export const getProducts = async () => {
   let products: FakeAPIProduct[] = [];
   try {
-    const data = await fetch(`https://fakestoreapi.com/products`);
+    const data = await fetch(`https://fakestoreapi.com/products`, {
+      next: { revalidate: 60 },
+    });
     if (!data.ok) throw new Error(`Failed to fetch products: ${data.status}`);
     products = await data.json();
   } catch (err) {
