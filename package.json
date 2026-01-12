@@ -1,7 +1,10 @@
 {
-  "name": "demo-next13",
+  "name": "ecommerce-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,9 +14,9 @@
   },
   "dependencies": {
     "currency.js": "^2.0.4",
-    "next": "13.5.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "16.1.1",
+    "react": "^19",
+    "react-dom": "^19",
     "react-loading-skeleton": "^3.3.1",
     "sass": "^1.69.0",
     "zustand": "^4.4.3"
@@ -21,7 +24,7 @@
   "devDependencies": {
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",    
+    "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.6",
     "@types/node": "^20",
     "@types/react": "^18",
